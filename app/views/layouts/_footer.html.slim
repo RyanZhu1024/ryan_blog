@@ -1,0 +1,5 @@
+footer.footer.container-fluid
+	p.muted.credit
+		-if Rails.env.development?
+			=debug(params)
+			=debug(controller.class)

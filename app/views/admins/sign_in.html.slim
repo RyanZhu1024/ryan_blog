@@ -1,0 +1,11 @@
+div.container
+	div.log_in
+		h2.form-signin-heading
+			|Please Sign In
+		=form_for(@admin,url:{action: :log_in},html:{:class=>"form-signin"}) do |f|
+			=f.text_field :name,placeholder:"Your name",class:"input-block-level"
+			=f.password_field :password,placeholder:"Your password",class:"input-block-level"
+			=f.label :rem,"Remember Me",class:"checkbox"
+			
+			=f.submit "Log in",class:"btn btn-large btn-primary"
+

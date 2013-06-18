@@ -1,0 +1,9 @@
+div.container-fluid id="single_article"
+	div
+		=render inline:render_markdown(@content) unless @content.nil?
+	div
+		ul.nav.nav-pills style="display:inline"
+			-unless @article.nil?
+				- @article.tags.each do |tag| 
+					li
+						= link_to tag.name,url_for(:controller=>'articles',:action=>'getArticlesByTag',:tag=>tag.name)

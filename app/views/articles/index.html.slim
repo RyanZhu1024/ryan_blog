@@ -1,0 +1,7 @@
+div.container-fluid
+	div.zone.zone-content
+		article.content-item.projection-page
+			header
+				- unless @articles.nil?
+					= render 'article_index'
+

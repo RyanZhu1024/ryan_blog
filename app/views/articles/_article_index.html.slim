@@ -1,0 +1,19 @@
+ul.media-list
+	- @articles.each do |article|
+		li.media
+			article.content-item.web
+				header
+					h1
+						= link_to article.title,article_path(article)
+					div.metadata
+						span.published
+							= DateTime.parse(article.created_at.to_s).strftime('%Y-%m-%d %H:%M:%S').to_s
+						span.tags
+							- article.tags.each do |tag|
+								span.well-small
+									= link_to tag.name,url_for(:controller=>'articles',:action=>'getArticlesByTag',:tag=>tag.name)
+				footer
+					div.thumbtext
+						= article.summary
+						p.more
+							=link_to "Read More",article_path(article)

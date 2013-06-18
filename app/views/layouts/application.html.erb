@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RyanBlog</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+
+<div class='container'>
+	<%= render 'layouts/flash' ,flash:flash %>
+	
+	<div class='row-fluid'>
+		<div class='row-fluid'>
+			<div class='span10'>
+				<%= yield %>
+			</div>
+			<div class='span2'>
+				<%= render 'layouts/sidebar' if @show_side_bar%>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= render 'layouts/footer' %>
+</body>
+</html>

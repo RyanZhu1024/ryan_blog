@@ -1,0 +1,28 @@
+header.navbar-wrapper
+	div.container
+		div.navbar.navbar-inverse
+			div.navbar-inner
+				button.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+					-3.times do |i|
+						span.icon-bar
+				a.brand href="#" "Ryan's Site"
+				div.nav-collapse.collapse		
+					ul.nav
+						li.active 
+							a href="#" "Home"
+						li
+							a href="#" "About"
+						li
+							a href="#" "Contact"
+						-unless session[:admin].nil?
+							li.dropdown
+								a.dropdown-toggle data-toggle="dropdown" "Admin"
+								ul.dropdown-menu
+									li
+										=link_to "Log Out"
+									li
+										=link_to "Make dairy"
+									li
+										=link_to "Upload Photos"
+									li
+										=link_to "Show messages"

@@ -1,0 +1,5 @@
+div.sidebar-nav id='sideBar' data-spy="affix"
+	ul.nav.nav-pills.nav-stacked
+		-getAllTags.each do |tag|
+			li.help-block
+				=link_to tag.name,url_for(:controller=>'articles',:action=>'getArticlesByTag',:tag=>tag.name)
