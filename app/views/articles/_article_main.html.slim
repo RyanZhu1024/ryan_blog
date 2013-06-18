@@ -1,0 +1,12 @@
+div.span6
+	=form_for :article ,url:{:action=>:create} do |f|
+		br
+			=text_field_tag :title,@article.title,class:"input-xlarge"
+		p
+			=text_area_tag :content,@content,rows:25,class:"input-xxlarge"
+		=text_field_tag :tags,nil,class:"input-xlarge"
+		div.tagTable
+			ul.nav.nav-pills style="display:inline"
+		p
+			=f.submit "Post",class:"btn btn-large btn-primary",id:"post"
+div.span6.article1

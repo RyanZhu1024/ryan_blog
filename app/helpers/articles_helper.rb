@@ -24,4 +24,12 @@ module ArticlesHelper
 	def getAllTags
 		Tag.select(:name).uniq
 	end
+
+	def fill_in_tags(article)
+		tags=[]
+		article.tags.each do |tag|
+			tags<<tag.name
+		end
+		tags.join(' ')
+	end
 end

@@ -22,7 +22,7 @@ getTags= ->
 			# alert($(this).text())
 		$('#tags').unbind 'click'
 	$.ajax
-		url:'getTags'
+		url:'/articles/getTags'
 		type:'GET'
 		dataType:'json'
 		success:callback

@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
 	has_many :tags
 	has_many :comments,dependent: :destroy
 
+	paginates_per 8
+
 	VALID_CONTENT_URI_REGEX=/\.\/(\w+\/)*\w+(\.\w+)+\z/i
 
 	validates_presence_of :content_link,:summary,:title
@@ -13,8 +15,9 @@ class Article < ActiveRecord::Base
 
 	def addTags(tags)
 		tags=tags|tags
+		self.tags.destroy_all
 		tags.each{|t|
-			self.tags.build(name:t.to_s.downcase)
+			self.tags.build(name:t.to_s.downcase) 
 		}
 	end
 end

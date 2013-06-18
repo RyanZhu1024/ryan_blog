@@ -5,3 +5,6 @@ div.container-fluid
 				- unless @articles.nil?
 					= render 'article_index'
 
+	p
+		= paginate @articles unless @articles.nil?
+

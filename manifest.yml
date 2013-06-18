@@ -1,0 +1,7 @@
+---
+applications:
+- name: ryan_blog
+  memory: 256M
+  instances: 1
+  url: ryan_blog.cfapps.io
+  path: .
