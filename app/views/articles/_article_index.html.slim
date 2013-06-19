@@ -15,5 +15,10 @@ ul.media-list
 				footer
 					div.thumbtext
 						= article.summary
-						p.more
-							=link_to "Read More",article_path(article)
+						ul.nav.nav-pills style="display:inline"
+							li.more
+								=link_to "Read More",article_path(article)
+							li
+								=render :partial=>'article_edit',:locals=>{:article=>article}
+							li
+								=render :partial=>'article_destroy',:locals=>{:article=>article}

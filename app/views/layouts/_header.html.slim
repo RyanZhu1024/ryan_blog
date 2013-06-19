@@ -1,15 +1,15 @@
 header.navbar-wrapper
 	div.container
 		div.navbar.navbar-inverse
-			div.navbar-inner
+			div.navbar-inner id="header"
 				button.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
 					-3.times do |i|
 						span.icon-bar
 				a.brand href="#" "Ryan's Site"
 				div.nav-collapse.collapse		
 					ul.nav
-						li.active 
-							a href="#" "Home"
+						li
+							=link_to "Articles Shelf",articles_path
 						li
 							a href="#" "About"
 						li

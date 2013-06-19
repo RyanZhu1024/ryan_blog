@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
 	attr_accessible :content_link, :summary, :title
-	has_many :tags
-	has_many :comments,dependent: :destroy
+	has_many :tags,dependent: :destroy
+	has_many :comments#,dependent: :destroy
 
 	paginates_per 8
 
@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
 
 	validates_presence_of :content_link,:summary,:title
 	validates_length_of :summary,maximum:140
-	validates_length_of :title,maximum:20
+	validates_length_of :title,maximum:140
 	# validates_format_of :content_link,with:VALID_CONTENT_URI_REGEX,messsage:"illegal content_link"
 	validates_uniqueness_of :content_link
 

@@ -7,3 +7,7 @@ div.container-fluid id="single_article"
 				- @article.tags.each do |tag| 
 					li
 						= link_to tag.name,url_for(:controller=>'articles',:action=>'getArticlesByTag',:tag=>tag.name)
+				li.pull-right
+					=render :partial=>'article_destroy',:locals=>{:article=>@article}
+				li.pull-right
+					=render :partial=>'article_edit',:locals=>{:article=>@article}

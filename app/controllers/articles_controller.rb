@@ -16,7 +16,21 @@ class ArticlesController < ApplicationController
 	end
 
 	def destroy
-
+		@article=Article.find_by_id params[:id]
+		begin
+			unless @article.nil?
+				file_path=@article.content_link
+				File.delete(file_path) if File.exists? file_path
+				@article.destroy 
+				flash[:notice]="Blog deleted"
+			else
+				flash[:warn]="Blog not existed,delete the data anyway!"
+			end
+			redirect_to articles_path
+		rescue Exception => e
+			flash[:error]="Blog deleted failed because of "+e.message
+			redirect_to @article
+		end
 	end
 
 	def index
@@ -66,12 +80,12 @@ class ArticlesController < ApplicationController
 
 		begin
 			@article.title=title
-			@article.content_link=file_path
+			@article.content_link=file_path unless update
 			@article.summary=summary
 			@article.save!
 			@article.addTags(tags.split(' '))
 			@article.save!
-			File.open(file_path,'w+'){|f|
+			File.open(@article.content_link,'w+'){|f|
 				f.write content
 			}
 			unless update
@@ -81,7 +95,7 @@ class ArticlesController < ApplicationController
 			end
 		rescue Exception => e
 			raise e
-			flash[:error]="#{title},#{content},#{file_path},#{e.message}"
+			flash[:error]="#{@article.title},#{@article.content},#{@article.content_link},#{e.message}"
 			unless update
 				redirect_to new_article_path
 			else
@@ -89,8 +103,6 @@ class ArticlesController < ApplicationController
 			end
 			return
 		end
-		@content=content
-		@title=title
 		redirect_to @article
 	end
 end
