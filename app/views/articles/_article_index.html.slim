@@ -1,10 +1,11 @@
 ul.media-list
 	- @articles.each do |article|
 		li.media
-			article.content-item.web
+			article.hero-unit.content-item.web
 				header
-					h1
+					h1.logo
 						= link_to article.title,article_path(article)
+					p
 					div.metadata
 						span.published
 							= DateTime.parse(article.created_at.to_s).strftime('%Y-%m-%d %H:%M:%S').to_s
