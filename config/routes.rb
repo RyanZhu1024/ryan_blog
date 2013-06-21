@@ -15,6 +15,8 @@ RyanBlog::Application.routes.draw do
     get 'getArticlesByTag',:on => :collection
   end
 
+  resources :comments,:except=>[:show,:new]
+
 
   
   # Sample of regular route:

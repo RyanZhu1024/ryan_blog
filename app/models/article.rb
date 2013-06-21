@@ -1,11 +1,11 @@
 class Article < ActiveRecord::Base
 	attr_accessible :content_link, :summary, :title
 	has_many :tags,dependent: :destroy
-	has_many :comments#,dependent: :destroy
+	has_many :comments,dependent: :destroy
 
 	paginates_per 8
 
-	VALID_CONTENT_URI_REGEX=/\.\/(\w+\/)*\w+(\.\w+)+\z/i
+	# VALID_CONTENT_URI_REGEX=/\.\/(\w+\/)*\w+(\.\w+)+\z/i
 
 	validates_presence_of :content_link,:summary,:title
 	validates_length_of :summary,maximum:140

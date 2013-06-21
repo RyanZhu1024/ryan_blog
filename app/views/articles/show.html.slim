@@ -11,3 +11,8 @@ div.container-fluid id="single_article"
 					=render :partial=>'article_destroy',:locals=>{:article=>@article}
 				li.pull-right
 					=render :partial=>'article_edit',:locals=>{:article=>@article}
+
+	div
+		=render :partial=>'/comments/index_comments',:locals=>{:article=>@article} unless @article.nil?
+	div
+		=render :partial=>'/comments/new_comments',:locals=>{:article=>@article} unless @article.nil?

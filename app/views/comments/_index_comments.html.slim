@@ -1,0 +1,17 @@
+coffee:
+	$ ->
+		$.ajax
+			url:'/comments'
+			type:'GET'
+			data:{article_id:$('#all_comments').attr("value")}
+			datatype:'json'
+			success:(response)->
+				if response!=null
+					if typeof(response)=="string"
+						response = JSON.parse(response)
+					for elem in response
+						$('#all_comments ul').append("<li class='help-block'><h4>#{elem.sender_email}</h2><p>#{elem.comment.content}</p></li>")
+
+
+div id="all_comments" value=article.id
+	ul

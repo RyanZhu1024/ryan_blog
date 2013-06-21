@@ -1,0 +1,12 @@
+div.container.clear-top.footer.push
+	= form_for(article.comments.build(article_id:article.id),:remote=>true) do |f|
+		= f.hidden_field :article_id
+		p
+			span
+				=text_field_tag :sender_email,nil,placeholder:"Your Email"	
+			span
+				=text_field_tag :sender_name,nil,placeholder:"Your Name"
+		p
+			=f.text_area :content,placeholder:"Put your comment here",:rows=>4,class:"input-xxlarge"
+		p
+			=f.submit "comment",class:"btn btn-primary"

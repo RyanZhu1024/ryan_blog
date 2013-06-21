@@ -1,0 +1,5 @@
+li
+	- unless @comment.nil?
+		=@comment.content
+	- else
+		p "Comment Failed"
