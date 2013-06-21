@@ -8,14 +8,17 @@ class CommentsController < ApplicationController
 				content=params[:comment][:content]
 				receiver=Guest.find_by_name(params[:receiver_name])
 				sender=Guest.find_by_email(params[:sender_email])||Guest.create(email:params[:sender_email],name:params[:sender_name])
-				@comment=@article.comments.new(content:content,receiver:receiver,sender:sender)
-
+				comment=@article.comments.new(content:content,receiver:receiver,sender:sender)
+				@comment_res=CommentResponse.new
 				begin
-					@comment.save
+					comment.save
+					@comment_res.comment=comment
+					@comment_res.sender_email=comment.sender.email
+					@comment_res.sender_name=comment.sender.name
 					format.html {redirect_to @article}
 					format.js {render :layout=>false}
 				rescue Exception => e
-					@comment=nil
+					@comment_res=nil
 					format.html {redirect_to @article}
 					format.js {render :layout=>false}
 				end

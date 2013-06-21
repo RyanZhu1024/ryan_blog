@@ -2,7 +2,6 @@ source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.12'
 
-gem 'mysql2'
 gem 'slim'
 gem "friendly_id", "~> 4.0.9"
 gem 'cells'		#substitude for partials
@@ -29,12 +28,17 @@ end
 
 group :development, :test do
 	gem "rspec-rails"
+	gem 'mysql2'
 	gem 'annotate', ">=2.5.0"
 	gem 'watchr'
 	gem 'spork', '~> 1.0rc'
 	gem "better_errors"
 	gem "binding_of_caller"
 	gem "factory_girl_rails", "~> 4.0"
+end
+
+group :production do
+	gem pg
 end
 
 gem 'jquery-rails'

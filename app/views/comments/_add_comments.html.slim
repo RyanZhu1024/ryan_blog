@@ -1,5 +1,8 @@
-li
-	- unless @comment.nil?
-		=@comment.content
+li.help-block
+	- unless @comment_res.nil?
+		h4
+			=@comment_res.sender_email
+		p
+			=@comment_res.comment.content
 	- else
 		p "Comment Failed"
