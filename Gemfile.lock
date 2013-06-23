@@ -85,6 +85,7 @@ GEM
     mime-types (1.23)
     multi_json (1.7.4)
     mysql2 (0.3.11)
+    pg (0.15.1)
     polyglot (0.3.3)
     pygmentize (0.0.3)
     rack (1.4.5)
@@ -173,6 +174,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mysql2
+  pg
   pygmentize
   rails (= 3.2.12)
   redcarpet
