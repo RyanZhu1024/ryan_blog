@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :guest do
-    name "MyString"
-    email "MyString"
+    sequence(:name){ |n|"guest#{n}"}
+    sequence(:email){ |n|"guest#{n}@guest.com"}
   end
 end

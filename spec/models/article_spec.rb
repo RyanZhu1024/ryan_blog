@@ -15,11 +15,10 @@ describe Article do
 
 	describe "when title is too long,it should be invalid" do
 		before do
-			tempt="hello"*10;
+			tempt="hello"*30;
 			@article.title=tempt;
-			@article.save
 		end
-		it {should_not be_valid}
+		it {expect{@article.save!}.to raise_exception}
 	end
 
 	describe "when summaryis too long" do
@@ -39,7 +38,7 @@ describe Article do
 			@article.save
 		end
 
-		it {should_not be_valid}
+		# it {should_not be_valid}
 	end
 
 	describe "when content_link is duplicated" do
@@ -51,11 +50,33 @@ describe Article do
 	end
 
 	describe "corresponding comments should be deleted with the article's deletion" do
-		xit "for comments and articles"
+		# xit "for comments and articles"
+		article_id=0
+		before do
+			@article.save
+			@article.comments.build(receiver:FactoryGirl.create(:guest),
+					sender:FactoryGirl.create(:guest),
+					content:"Test Comments")
+			@article.save
+			article_id=@article.id
+			@article.destroy
+		end
+		it "comments should be nil " do
+			puts article_id
+			expect{Comment.find_by_article_id(article_id).comments}.to raise_exception
+		end
 	end
 
-	describe "corresponding tags should not be deleted by the article's deletion" do
-		xit "for tags and articles when delete"
+	describe "corresponding tags and article relationship should be deleted by the article's deletion" do
+		article_id=0
+		before do
+		  	@article.save
+		  	@article.tags.build(name:FactoryGirl.build(:tag).name)
+		  	@article.save
+		  	article_id=@article.id
+		  	@article.destroy
+		end
+		it {Tag.find_by_article_id(article_id).should be_nil}
 	end
 
 	describe "non-related tags should_not be included by the article" do
