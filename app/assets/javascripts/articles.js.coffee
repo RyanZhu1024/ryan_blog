@@ -33,7 +33,8 @@ getTags= ->
 $ ->
 	$('#tags').click ->
 		getTags()
-	setInterval(parseMarkdown,100) if $('#content').length>0
+	$('#content').keyup ->
+		parseMarkdown()
 	$('#post').click ->
 		clearInterval(parseMarkdown)
 
